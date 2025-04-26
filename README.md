@@ -1,99 +1,60 @@
-# 🎬 Mood-Based Movie Recommender (Flask App)
+# 🎬 MoodFlix — Movie Recommendations Based on Your Mood
 
-This is a Flask-based web application that recommends Indian movies based on your current mood. The system infers your mood from a set of 5 simple questions and maps it to relevant movie genres.
+MoodFlix is a Flask web app that recommends Indian movies based on your mood. Answer a few quick questions, and get a personalized list of movies matching your vibe.
 
 ---
-
 ## 🚀 Features
 
-- 🧠 Logic-based mood detection using weighted scoring
-- 🎥 Genre-filtered movie recommendations
-- 🔀 Randomized results on each submission for variety
-- 💡 Clean HTML UI with aesthetic slideshow background (optional)
-
+- Mood-based movie recommendations
+- Smart genre filtering
+- Randomized fresh results
+- Clean and easy-to-use interface
 ---
 
-## 🧰 Tech Stack
+## 🛠 Tech Stack
 
-- **Flask** (Python web framework)
-- **Pandas** (for CSV filtering)
-- **HTML/CSS** (Jinja templates)
-- **VS Code + Git + GitHub**
-
+- Flask (Python)
+- Pandas
+- HTML/CSS (Jinja templates)
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
-movie-recommender/
-│
-├── movie.py                  # Flask app
-├── dataset_indian.csv        # Indian movie dataset (optional to upload)
-├── requirements.txt          # Python package dependencies
+MoodFlix/
+├── movie.py
+├── dataset_indian.csv
+├── requirements.txt
 ├── .gitignore
 ├── README.md
 │
-├── static/                   # Poster images (for slideshow bg)
+├── static/
 │   ├── poster1.jpg
-│   ├── poster2.jpg
-│   └── ...
+│   └── poster2.jpg
 │
-└── templates/                # HTML Templates
+└── templates/
     ├── index.html
     ├── recommend.html
     └── error.html
 ```
-
 ---
 
-## 🧠 Mood Inference Logic
+## ⚙️ Setup
 
-User answers to questions like:
-- What type of activity would you prefer right now?
-- What kind of pace do you enjoy in a movie?
-
-...are mapped to moods like:
-- `Excited` → Action, Sci-Fi, Thriller
-- `Romantic` → Romance, Drama
-- `Cheerful` → Comedy, Feel-good
-- `Melancholic` → Historical, Drama
-- `Mysterious`, `Curious`, `Scared`, etc.
-
-Genres are filtered accordingly, and movies are randomly picked.
-
----
-
-## ⚙️ Local Setup
-
-### 🐍 Step 1: Install Dependencies
 ```bash
 pip install -r requirements.txt
-```
-
-### ▶️ Step 2: Run Flask App
-```bash
 python movie.py
 ```
-
-Then open [http://localhost:5000](http://localhost:5000) in your browser.
-
----
-
-## 📌 Notes
-
-- If you're using `dataset_indian.csv`, you can `.gitignore` it to avoid pushing large files.
-- This project is ideal for academic/portfolio/demo purposes.
+Then visit [http://localhost:5000](http://localhost:5000) in your browser.
 
 ---
 
 ## 📜 License
 
-MIT License.  
-You're free to use, modify, or extend this project. Attribution appreciated!
+MIT License — free to use and modify with credit.
 
 ---
 
-## 🌐 Author
+## 🌟 Author
 
-Made with 💻 in Python & Flask by [Your Name]  
-Feel free to ⭐️ the repo if you like it!
+Made with ❤️ using Flask. Feel free to star the repo!
