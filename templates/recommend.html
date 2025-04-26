@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Recommendations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      background: #000;
+    }
+
+    .slideshow {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: fade 24s infinite;
+    }
+
+    .slideshow img:nth-child(1) { animation-delay: 0s; }
+    .slideshow img:nth-child(2) { animation-delay: 6s; }
+    .slideshow img:nth-child(3) { animation-delay: 12s; }
+    .slideshow img:nth-child(4) { animation-delay: 18s; }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      8% { opacity: 1; }
+      25% { opacity: 1; }
+      33% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .container {
+      padding: 60px 40px;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffcc70;
+      margin-bottom: 40px;
+    }
+
+    .movie-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .movie {
+      display: flex;
+      align-items: flex-start;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .movie:hover {
+      transform: translateY(-5px);
+    }
+
+    .movie img {
+      width: 150px;
+      height: 225px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+
+    .movie-details h2 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    .movie-details p {
+      margin: 5px 0;
+      color: #ccc;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      color: #fff;
+      background-color: #ff6b81;
+      padding: 12px 28px;
+      border-radius: 10px;
+      transition: 0.3s;
+      width: max-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .back-link:hover {
+      background-color: #ff4757;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Slideshow -->
+  <div class="slideshow">
+    <img src="{{ url_for('static', filename='poster1.jpg') }}">
+    <img src="{{ url_for('static', filename='poster2.jpg') }}">
+    <img src="{{ url_for('static', filename='poster3.jpg') }}">
+    <img src="{{ url_for('static', filename='poster4.jpg') }}">
+  </div>
+
+  <div class="container">
+    <h1>🎥 Movie Recommendations for Your Mood</h1>
+
+    {% if movies %}
+      <div class="movie-list">
+        {% for movie in movies %}
+          <div class="movie">
+            <img src="{{ movie['Poster_Link'] }}" alt="Poster">
+            <div class="movie-details">
+              <h2>{{ movie['Series_Title'] }}</h2>
+              <p><strong>Released:</strong> {{ movie['Released_Year'] }}</p>
+              <p><strong>IMDB Rating:</strong> {{ movie['IMDB_Rating'] }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p style="text-align:center; font-size: 1.2rem; color: #eee;">No recommendations found.</p>
+    {% endif %}
+
+    <a href="/" class="back-link">🔙 Back to Home</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Mood Recommender</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Background Slideshow */
+    .slideshow {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: fade 24s infinite;
+    }
+
+    .slideshow img:nth-child(1) { animation-delay: 0s; }
+    .slideshow img:nth-child(2) { animation-delay: 6s; }
+    .slideshow img:nth-child(3) { animation-delay: 12s; }
+    .slideshow img:nth-child(4) { animation-delay: 18s; }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      8% { opacity: 1; }
+      25% { opacity: 1; }
+      33% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* Overlay Form */
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 550px;
+      color: #fff;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 30px;
+      color: #ffcc70;
+    }
+
+    label {
+      margin-top: 15px;
+      display: block;
+      font-weight: 500;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #ff6b81;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #ff4757;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Slideshow -->
+  <div class="slideshow">
+    <img src="{{ url_for('static', filename='poster1.jpg') }}">
+    <img src="{{ url_for('static', filename='poster2.jpg') }}">
+    <img src="{{ url_for('static', filename='poster3.jpg') }}">
+    <img src="{{ url_for('static', filename='poster4.jpg') }}">
+  </div>
+
+  <!-- Form Aligned Left -->
+  <div style="width: 100%; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding-left: 5%;">
+    <div class="overlay">
+      <h1>🎬 Movie Mood Recommender</h1>
+      <form action="/recommend" method="POST">
+        <label>1. What type of activity would you prefer right now?</label>
+        <select name="What type of activity would you prefer right now?" required>
+          <option disabled selected value="">Choose...</option>
+          <option value="Relaxing">Relaxing</option>
+          <option value="Thrilling">Thrilling</option>
+          <option value="Family time">Family time</option>
+          <option value="Nostalgic reflection">Nostalgic reflection</option>
+          <option value="Socializing">Socializing</option>
+        </select>
+
+        <label>2. What’s your ideal movie setting?</label>
+        <select name="What’s your ideal movie setting?" required>
+          <option disabled selected value="">Choose...</option>
+          <option value="Futuristic">Futuristic</option>
+          <option value="Historical">Historical</option>
+          <option value="Everyday life">Everyday life</option>
+          <option value="Adventurous">Adventurous</option>
+          <option value="Romantic">Romantic</option>
+        </select>
+
+        <label>3. What kind of pace do you enjoy in a movie?</label>
+        <select name="What kind of pace do you enjoy in a movie?" required>
+          <option disabled selected value="">Choose...</option>
+          <option value="Slow and emotional">Slow and emotional</option>
+          <option value="Fast-paced">Fast-paced</option>
+          <option value="Balanced">Balanced</option>
+          <option value="Suspenseful">Suspenseful</option>
+        </select>
+
+        <label>4. How would you describe your energy level right now?</label>
+        <select name="How would you describe your energy level right now?" required>
+          <option disabled selected value="">Choose...</option>
+          <option value="High">High</option>
+          <option value="Low">Low</option>
+          <option value="Calm">Calm</option>
+          <option value="Restless">Restless</option>
+        </select>
+
+        <label>5. What’s your favorite type of ending?</label>
+        <select name="What’s your favorite type of ending?" required>
+          <option disabled selected value="">Choose...</option>
+          <option value="Happy">Happy</option>
+          <option value="Open-ended">Open-ended</option>
+          <option value="Inspiring">Inspiring</option>
+          <option value="Dramatic">Dramatic</option>
+          <option value="Suspenseful Ending">Suspenseful Ending</option>
+        </select>
+
+        <button type="submit">✨ Get Recommendations</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
