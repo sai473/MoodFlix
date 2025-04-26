@@ -1,6 +1,6 @@
 # 🎬 MoodFlix — Movie Recommendations Based on Your Mood
 
-MoodFlix is a Flask web app that recommends Indian movies based on your mood. Answer a few quick questions, and get a personalized list of movies matching your vibe.
+MoodFlix is a Flask web app that recommends movies based on your mood. Answer a few quick questions, and get a personalized list of movies matching your vibe.
 
 ---
 ## 🚀 Features
